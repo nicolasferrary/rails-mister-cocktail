@@ -4,17 +4,19 @@
 
   <div class = "row">
 
-    <div class ="col-xs-12 col-md-9">
+    <div class ="col-xs-12 col-md-6">
       <%= image_tag "cocktailback.jpg", class:"div"%>
     </div>
 
-    <div class ="col-xs-12 col-md-3">
-      This cocktail is made by your favourite barman with the following <strong> ingredients </strong> :
-      <ul>
-        <% @cocktail.ingredients.each do|ingredient| %>
-          <%= ingredient.name %>
+    <div class ="col-xs-12 col-md-6">
+      <p><%= @cocktail.name %> is made by your favourite barman with the following <strong> ingredients </strong> : </p>
+      <dl class="dl-horizontal text-overflow">
+        <% @cocktail.doses.each do|dose| %>
+          <dt class = "text-overflow"> <%= dose.ingredient.name %></dt>
+          <dd> <%= dose.description.capitalize %></dd>
         <% end %>
-      </ul>
+      </dl>
+      <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
     </div>
 
   </div>
