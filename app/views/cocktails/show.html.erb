@@ -1,0 +1,23 @@
+<div class="container ">
+
+  <h2 class ="text-center">Enjoy your <%= @cocktail.name %></h2>
+
+  <div class = "row">
+
+    <div class ="col-xs-12 col-md-9">
+      <%= image_tag "cocktailback.jpg", class:"div"%>
+    </div>
+
+    <div class ="col-xs-12 col-md-3">
+      This cocktail is made by your favourite barman with the following <strong> ingredients </strong> :
+      <ul>
+        <% @cocktail.ingredients.each do|ingredient| %>
+          <%= ingredient.name %>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
