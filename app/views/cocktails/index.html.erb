@@ -2,7 +2,7 @@
 
   <div class = "row">
     <div class ="col-xs-12 col-md-8" >
-      <h1 class ="text-center">Enjoy our cocktails !</h1>
+      <h1 class ="text-center">Enjoy our baby bottle cocktails !</h1>
     </div>
 
     <div class = "col-xs-12 col-md-4" >
@@ -21,21 +21,23 @@
 
             <% if cocktail.photo.url %>
 
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo, height: 200, width: 400, crop: :fill %>')">
-                <div class="card-category"><%= cocktail.name %></div>
+              <div class="card image-spin" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path cocktail.photo, height: 200, width: 400, crop: :fill %>')">
                 <div class="card-description">
-                  <h2>Some stuff</h2>
-                  <p>Very cool stuff, useful and smart</p>
+                  <h2><%= cocktail.name %></h2>
+                  <%  cocktail.ingredients.each do |ingredient| %>
+                    <%= ingredient.name %>
+                  <% end %>
                 </div>
               </div>
 
             <% else %>
 
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://lorempixel.com/400/200/food');">
-                <div class="card-category"><%= cocktail.name %></div>
+              <div class="card image-spin" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= image_path("babybottle.png") %>);">
                 <div class="card-description">
-                  <h2>Some stuff</h2>
-                  <p>Very cool stuff, useful and smart</p>
+                  <h2><%= cocktail.name %></h2>
+                  <%  cocktail.ingredients.each do |ingredient| %>
+                    <%= ingredient.name %>
+                  <% end %>
                 </div>
               </div>
 
@@ -53,8 +55,12 @@
         <%= f.input :name, placeholder: "Mojito" %>
         <%= f.input :photo %>
         <%= f.input :photo_cache, as: :hidden %>
-        <%= f.submit "Add a cocktail", class: "btn btn-primary" %>
+        <%= f.submit "Add a cocktail", class:"navbar-wagon-item navbar-wagon-button btn btn-size" %>
       <% end %>
+
+      <%= image_tag "baby drinker.jpg", class: "community" %>
+
+      <%= link_to "Join the community", "#", class:"navbar-wagon-item navbar-wagon-button btn btn-size" %>
 
     </div >
 

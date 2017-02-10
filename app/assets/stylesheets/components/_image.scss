@@ -4,4 +4,28 @@
   width: 500;
 }
 
+.bib_image{
+  width : 60px;
+}
 
+
+.community {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.image-spin:hover {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(3600deg);
+    }
+}
