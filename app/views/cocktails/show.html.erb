@@ -12,13 +12,31 @@
       <p><%= @cocktail.name %> is made by your favourite barman with the following <strong> ingredients </strong> : </p>
       <dl class="dl-horizontal text-overflow">
         <% @cocktail.doses.each do|dose| %>
-          <dt class = "text-overflow"> <%= dose.ingredient.name %></dt>
-          <dd> <%= dose.description.capitalize %></dd>
+          <dt class = "text-overflow">
+            <%= link_to dose.ingredient.name, ingredient_path(dose.ingredient) %>
+          </dt>
+          <dd>
+            <%= dose.description.capitalize %>
+            <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-trash"></i>
+            <% end %>
+          </dd>
         <% end %>
       </dl>
-      <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
     </div>
+  </div>
 
+  <div class = "row">
+
+    <div class ="col-md-offset-6 col-xs-12 col-md-6">
+      <h4>Add an ingredient to <%= @cocktail.name %></h4>
+
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+          <%= f.association :ingredient %>
+          <%= f.input :description %>
+          <%= f.submit "add an ingredient", class: "btn btn-primary" %>
+        <% end %>
+    </div>
   </div>
 
 </div>
