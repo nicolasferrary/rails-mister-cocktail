@@ -4,9 +4,21 @@
 
   <div class = "row">
 
-    <div class ="col-xs-12 col-md-6">
-      <%= image_tag "cocktailback.jpg", class:"div"%>
-    </div>
+    <% if @cocktail.photo.url %>
+
+      <div class ="col-xs-12 col-md-6">
+        <%= cl_image_tag @cocktail.photo, height: 400, width: 500, crop: :fill %>
+      </div>
+
+    <% else %>
+
+      <div class ="col-xs-12 col-md-6">
+        <%= image_tag "cocktailback.jpg", height: 400, width: 500, class: "img-responsive"%>
+      </div>
+
+    <% end %>
+
+
 
     <div class ="col-xs-12 col-md-6">
       <p><%= @cocktail.name %> is made by your favourite barman with the following <strong> ingredients </strong> : </p>

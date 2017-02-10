@@ -17,14 +17,30 @@
 
       <% @cocktails.each do |cocktail| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= link_to cocktail_path(cocktail) do %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://lorempixel.com/400/200/food');">
-            <div class="card-category"><%= cocktail.name %></div>
-            <div class="card-description">
-              <h2>Some stuff</h2>
-              <p>Very cool stuff, useful and smart</p>
-            </div>
-          </div>
+          <%= link_to cocktail_path(cocktail) do %>
+
+            <% if cocktail.photo.url %>
+
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo, height: 200, width: 400, crop: :fill %>')">
+                <div class="card-category"><%= cocktail.name %></div>
+                <div class="card-description">
+                  <h2>Some stuff</h2>
+                  <p>Very cool stuff, useful and smart</p>
+                </div>
+              </div>
+
+            <% else %>
+
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://lorempixel.com/400/200/food');">
+                <div class="card-category"><%= cocktail.name %></div>
+                <div class="card-description">
+                  <h2>Some stuff</h2>
+                  <p>Very cool stuff, useful and smart</p>
+                </div>
+              </div>
+
+            <% end %>
+
           <% end %>
         </div>
       <% end %>
@@ -35,6 +51,8 @@
       <%= simple_form_for(@cocktail) do |f| %>
 
         <%= f.input :name, placeholder: "Mojito" %>
+          <%= f.input :photo %>
+           <%= f.input :photo_cache, as: :hidden %>
         <%= f.submit "Add a cocktail", class: "btn btn-primary" %>
       <% end %>
 
